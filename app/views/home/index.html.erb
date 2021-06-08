@@ -1,11 +1,22 @@
-<h1>Home#index</h1>
+<h1>Tweets</h1>
+<hr/>
 
 <% @tweets.each do |tweet| %>
+<hr>
+<div class="row">
 
-   <!-- <%= image_tag(tweet.user.photo_url) %>
-   <%= tweet.contenido %>
-   <%= tweet.likes.count %> -->
+   <%= image_tag(tweet.user.photo_url, :size => "100x100") %> /
+   <%= tweet.contenido %> 
+   <hr>
+   <div>
+         <%= tweet.likes.count %> likes / 0 Re-Twwets
+    </div>
 
+</div>
+
+
+
+<!-- Tweets en modo card Boostrap
    <div class="card" style="width: 18rem;">
    <%= image_tag(tweet.user.photo_url, class: "card-img-top") %> 
   <div class="card-body">
@@ -21,7 +32,13 @@
     <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a>
   </div>
-</div>
+</div> -->
 
 <% end %>
+<!-- Paginador Kaminari por defecto. 
+<hr> 
+<%= paginate @tweets %> -->
+<hr> 
+<%= link_to_previous_page @tweets,  "<<< Mostrar Anterior", class: 'btn btn-dark' %>
 
+<%= link_to_next_page @tweets,  "Mostrar Mas >>>", class:  "btn btn-dark" %>
