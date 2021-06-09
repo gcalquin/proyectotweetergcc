@@ -5,4 +5,6 @@ class Tweet < ApplicationRecord
 
   paginates_per 4
 
+  validates :contenido, presence:true
+
 end

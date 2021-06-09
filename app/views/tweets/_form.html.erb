@@ -13,15 +13,21 @@
 
   <div class="field">
     <%= form.label :contenido %>
-    <%= form.text_area :contenido %>
+    <%= form.text_area :contenido, class: "form-control", placeholder:"Escribe tu Tweet Aqui..." %>
   </div>
 
-  <div class="field">
+
+<!--
+
+ <div class="field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id %>
-  </div>
+  </div> 
+
+-->
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-dark" %>
   </div>
+  <br>
 <% end %>

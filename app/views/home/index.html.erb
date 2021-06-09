@@ -1,16 +1,30 @@
 <h1>Tweets</h1>
 <hr/>
 
+<% if user_signed_in? %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <li> Id: <%= current_user.id %> </li>
+    <li> Username: <%= current_user.username %> </li>
+    <li> Correo: <%= current_user.email %> </li>
+  </div>
+</div>
+<!--<p> Id: <%= current_user.id %>, Username: <%= current_user.username %>, Correo: <%= current_user.email %>  </p> -->
+   <%= render "tweets/form", tweet: @tweet %>
+<% end  %>
+
 <% @tweets.each do |tweet| %>
 <hr>
 <div class="row">
 
-   <%= image_tag(tweet.user.photo_url, :size => "100x100") %> /
-   <%= tweet.contenido %> 
+   <%= image_tag(tweet.user.photo_url, :size => "80x80") %> /
+   <%= tweet.contenido %> / 
+   Creado Hace: <%= time_ago_in_words(tweet.created_at) %>
    <hr>
    <div>
          <%= tweet.likes.count %> likes / 0 Re-Twwets
     </div>
+    
 
 </div>
 
