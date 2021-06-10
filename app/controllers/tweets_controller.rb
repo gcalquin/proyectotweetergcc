@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :set_current_tweet, only: %i[ likes ]
 
   # GET /tweets or /tweets.json
   def index
@@ -18,6 +19,18 @@ class TweetsController < ApplicationController
   # GET /tweets/1/edit
   def edit
   end
+
+  def likes
+    if @tweet.is_liked?(current_user)
+        @tweet.remove_like(current_user)
+    else
+        @tweet.add_like(current_user)
+    end
+    redirect_to root_path
+  end
+
+    
+  
 
   # POST /tweets or /tweets.json
   def create
@@ -67,4 +80,10 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:contenido, :user_id)
     end
+
+    def set_current_tweet
+      @tweet = Tweet.find(params[:tweet_id])
+    end
+    
+
 end
