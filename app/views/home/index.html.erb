@@ -5,7 +5,7 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <li> Id: <%= current_user.id %> </li>
-    <li> Username: <%= current_user.username %> </li>
+    <li> Logeado Como: <%= current_user.username %> </li>
     <li> Correo: <%= current_user.email %> </li>
   </div>
 </div>
@@ -17,9 +17,14 @@
 <hr>
 <div class="row">
 
-   <%= image_tag(tweet.user.photo_url, :size => "80x80") %> /
-   <%= tweet.contenido %> / 
+   <%= image_tag(tweet.user.photo_url, :size => "48x48") %> &nbsp /
+   <%= tweet.user.username %> /
+   <%= tweet.contenido %>
+    
    Creado Hace: <%= time_ago_in_words(tweet.created_at) %>
+   <% if tweet.is_retweet? %>
+      <%= link_to " * * *", tweet.tweet_ref %>
+    <% end %>
    <hr>
 
 
@@ -31,21 +36,18 @@
 
 <%= tweet.likes.count %> 
 <% if tweet.is_liked?(current_user) %>
-   <%= link_to '<i class="fas fa-thumbs-up"></i>'.html_safe, tweet_likes_path(tweet), method: :post %>
+  &nbsp <%= link_to '<i class="far fa-grin-alt" style="font-size:48px;color:grey"></i>'.html_safe, tweet_likes_path(tweet), method: :post, "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Like / Dis_Like" %>
 <% else %>
-     <%= link_to '<i class="fas fa-thumbs-down"></i>'.html_safe, tweet_likes_path(tweet), method: :post %>
+   &nbsp   <%= link_to '<i class="far fa-angry" style="font-size:48px;color:grey"></i>'.html_safe, tweet_likes_path(tweet), method: :post, "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Like / Dis_Like" %>
 <% end %>
 
 
 
 
 
-/ 0 Re-Tweets 
+&nbsp/&nbsp <%= tweet.count_rt %> &nbsp
 
-
-
-
-
+<%= link_to '<i class="fas fa-arrow-circle-right"  style="font-size:48px;color:grey"></i>'.html_safe, tweet_retweet_path(tweet), method: :post, "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Re_tweet" %>
     
 
 </div>

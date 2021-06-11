@@ -22,6 +22,19 @@ class Tweet < ApplicationRecord
     Like.create(user: user, tweet: self)    
   end
   
+  def count_rt
+    Tweet.where(retweeteado: self.id).count
+  end
+
+  def is_retweet?
+    retweeteado ? true : false
+  end
+
+  def tweet_ref
+    Tweet.find(self.retweeteado)
+  end
+  
+  
   
 
   validates :contenido, presence:true

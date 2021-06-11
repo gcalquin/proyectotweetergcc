@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
-  before_action :set_current_tweet, only: %i[ likes ]
+  before_action :set_current_tweet, only: %i[ likes, retweet ]
 
   # GET /tweets or /tweets.json
   def index
@@ -28,6 +28,12 @@ class TweetsController < ApplicationController
     end
     redirect_to root_path
   end
+
+  def retweet
+    new_tweet = Tweet.create(contenido: @tweet.contenido, user: current_user, retweeteado: @tweet.id)
+    redirect_to root_path
+  end
+  
 
     
   
