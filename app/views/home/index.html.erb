@@ -19,7 +19,7 @@
 
    <%= image_tag(tweet.user.photo_url, :size => "48x48") %> &nbsp /
    <%= tweet.user.username %> /
-   <%= tweet.contenido %>
+   <%= tweet.contenido %> /
     
    Creado Hace: <%= time_ago_in_words(tweet.created_at) %>
    <% if tweet.is_retweet? %>
@@ -40,6 +40,7 @@
 <% else %>
    &nbsp   <%= link_to '<i class="far fa-angry" style="font-size:48px;color:grey"></i>'.html_safe, tweet_likes_path(tweet), method: :post, "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Like / Dis_Like" %>
 <% end %>
+
 
 
 

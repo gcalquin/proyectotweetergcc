@@ -34,6 +34,7 @@ class Tweet < ApplicationRecord
     Tweet.find(self.retweeteado)
   end
   
+
   
   
 
