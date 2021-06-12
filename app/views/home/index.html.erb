@@ -1,14 +1,15 @@
-<h1>Tweets</h1>
-<hr/>
 
 <% if user_signed_in? %>
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <li> Id: <%= current_user.id %> </li>
-    <li> Logeado Como: <%= current_user.username %> </li>
+    <li> Logeado Como: <b> <%= current_user.username %> </b> </li>
     <li> Correo: <%= current_user.email %> </li>
   </div>
 </div>
+
+<br>
+
 <!--<p> Id: <%= current_user.id %>, Username: <%= current_user.username %>, Correo: <%= current_user.email %>  </p> -->
    <%= render "tweets/form", tweet: @tweet %>
 <% end  %>
@@ -21,7 +22,7 @@
    <%= tweet.user.username %> /
    <%= tweet.contenido %> /
     
-   Creado Hace: <%= time_ago_in_words(tweet.created_at) %>
+   Creado Hace:&nbsp <%=link_to time_ago_in_words(tweet.created_at), tweet %>
    <% if tweet.is_retweet? %>
       <%= link_to " * * *", tweet.tweet_ref %>
     <% end %>
