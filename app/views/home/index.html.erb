@@ -33,8 +33,16 @@
 
   <div class="card-body">
     <%= image_tag(tweet.user.photo_url, :size => "48x48", class: "float-right") %>
+    <br>
+    <br>
+    <br>
+    <% if user_signed_in? && current_user != tweet.user %>
+      <%= link_to current_user.is_following?(tweet.user) ? "Dejar de Seguir" : "Seguir", users_follow_path(tweet.user.id), :class => "btn btn-success float-right", method: :post %>
+    <% end %>
       <!-- <h5 class="card-title"><%= tweet.user.username %> escribio:</h5> -->
       <br>
+       <br>
+        <br>
     <p class="card-text"><b><%= tweet.user.username %></b> escribio el siguiente contenido: </p>
     <div class="card">
     <br>
@@ -43,9 +51,14 @@
     </div>
     <br>
   <p class="card-text">Creado Hace:&nbsp <%=link_to time_ago_in_words(tweet.created_at), tweet %> </p>
+
+   <!-- <%= link_to "Seguir", users_follow_path(tweet.user.id) %> -->
+
+
+
    <% if tweet.is_retweet? %>
-      <%= link_to "Retweeteado", tweet.tweet_ref, style: "color: red;" %>
-    <% end %>
+       <%= link_to "- Retweeteado -", tweet.tweet_ref, style: "color: white; background: green;" %>
+     <% end %>
 
     <br>
 
