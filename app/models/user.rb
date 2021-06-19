@@ -17,6 +17,11 @@ class User < ApplicationRecord
   ##  User.find(arr_ids)
   ##end
 
+  #def admin
+  #  self.admin ? true : false
+  #end
+  
+
 
   def user_followed
     amigos = self.friends.pluck(:friend_id)
@@ -28,6 +33,25 @@ class User < ApplicationRecord
   def is_following?(user)
       user_followed.include? (user)
   end
+
+  def Cuentas_que_sigue
+    self.friends.count
+  end
+
+  def Tweets_realizados
+    self.tweets.count
+  end
+
+  def Likes_dados
+    self.likes.count
+  end
+
+  def Candidad_de_retweets
+    self.tweets.where.not(retweeteado: nil).count
+  end
+  
+  
+  
   
 
 end
