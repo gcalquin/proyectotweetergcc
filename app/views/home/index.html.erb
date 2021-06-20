@@ -63,7 +63,7 @@
     <p class="card-text"><b><%= tweet.user.username %></b> escribio el siguiente contenido: </p>
     <div class="card">
     <br>
-    <p class="card-text"><%= tweet.contenido %></p>
+    <p class="card-text"><%= tweet.contenido.html_safe %></p>
     <br>
     </div>
     <br>
