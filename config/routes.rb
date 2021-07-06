@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'api/news'
+
+  get "/:fecha1/:fecha2", to: "api#fechas", as: "fechas"
+
+  post "/tweets", to: "api#crear_tweet_api"
+
   ActiveAdmin.routes(self)
   #get 'users/follow'
   resources :tweets do
